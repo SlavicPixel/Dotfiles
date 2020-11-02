@@ -344,6 +344,40 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
+              widget.Image(
+                       filename = "~/.config/qtile/icons/python.png",
+                       mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn('dmenu_run')}
+                       ),
+              widget.Sep(
+                       linewidth = 0,
+                       padding = 3,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),                       
+              widget.Image(
+                       filename = "~/.config/qtile/icons/firefox.png",
+                       mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn('firefox')}
+                       ),
+              widget.Sep(
+                       linewidth = 0,
+                       padding = 3,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),                                                
+              widget.Image(
+                       filename = "~/.config/qtile/icons/pcmr.png",
+                       mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn('pcmanfm')}
+                       ),
+              widget.Sep(
+                       linewidth = 0,
+                       padding = 3,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),                         
+              widget.Image(
+                       filename = "~/.config/qtile/icons/redhat.png",
+                       mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + ' -e sudo virt-manager')}
+                       ),    
               widget.Sep(
                        linewidth = 0,
                        padding = 6,
