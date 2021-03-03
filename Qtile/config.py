@@ -302,7 +302,7 @@ for i in groups:
 def init_layout_theme():
     return {"margin":5,
             "border_width":2,
-            "border_focus": "#5e81ac",
+            "border_focus": "#5e81ac",  ## 5e81ac --> default color
             "border_normal": "#4c566a"
             }
 
@@ -310,7 +310,7 @@ layout_theme = init_layout_theme()
 
 
 layouts = [
-    layout.MonadTall(margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"),
+    layout.MonadTall(margin=8, border_width=1, border_focus="#9900cc", border_normal="#4c566a"),
     layout.MonadWide(margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"),
     layout.Matrix(**layout_theme),
     layout.Bsp(**layout_theme),
@@ -343,41 +343,7 @@ widget_defaults = init_widgets_defaults()
 
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
-    widgets_list = [
-              widget.Image(
-                       filename = "~/.config/qtile/icons/python.png",
-                       mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn('dmenu_run')}
-                       ),
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 3,
-                       foreground = colors[2],
-                       background = colors[0]
-                       ),                       
-              widget.Image(
-                       filename = "~/.config/qtile/icons/firefox.png",
-                       mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn('firefox')}
-                       ),
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 3,
-                       foreground = colors[2],
-                       background = colors[0]
-                       ),                                                
-              widget.Image(
-                       filename = "~/.config/qtile/icons/pcmr.png",
-                       mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn('pcmanfm')}
-                       ),
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 3,
-                       foreground = colors[2],
-                       background = colors[0]
-                       ),                         
-              widget.Image(
-                       filename = "~/.config/qtile/icons/redhat.png",
-                       mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + ' -e sudo virt-manager')}
-                       ),    
+    widgets_list = [    
               widget.Sep(
                        linewidth = 0,
                        padding = 6,
@@ -422,7 +388,7 @@ def init_widgets_list():
                        foreground = colors[6],
                        background = colors[0],
                        padding = 0,
-                       fontsize = 16                       
+                       fontsize = 18                       
                        ),
               widget.TextBox(
                        text = '',
@@ -436,13 +402,13 @@ def init_widgets_list():
                        padding = 0,
                        foreground = colors[2],
                        background = colors[4],
-                       fontsize = 16
+                       fontsize = 18
                        ),
               widget.BitcoinTicker(
                        foreground = colors[2],
                        background = colors[4],
                        padding = 5,
-                       fontsize = 16                       
+                       fontsize = 18                       
                        ),
               widget.TextBox(
                        text = '',
@@ -456,14 +422,14 @@ def init_widgets_list():
                        padding = 2,
                        foreground = colors[2],
                        background = colors[5],
-                       fontsize = 16
+                       fontsize = 18
                        ),
               widget.ThermalSensor(
                        foreground = colors[2],
                        background = colors[5],
                        threshold = 90,
                        padding = 5,
-                       fontsize = 16                       
+                       fontsize = 18                       
                        ),
               widget.TextBox(
                        text='',
@@ -477,14 +443,14 @@ def init_widgets_list():
                        padding = 2,
                        foreground = colors[2],
                        background = colors[4],
-                       fontsize = 16
+                       fontsize = 18
                        ),
               widget.Pacman(
                        update_interval = 1800,
                        foreground = colors[2],
                        mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + ' sudo pacman -Syu')},
                        background = colors[4],
-                       fontsize = 16                       
+                       fontsize = 18                       
                        ),
               widget.TextBox(
                        text = "Updates",
@@ -492,7 +458,7 @@ def init_widgets_list():
                        mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + 'sudo pacman -Syu')},
                        foreground = colors[2],
                        background = colors[4],
-                       fontsize = 16                       
+                       fontsize = 18                      
                        ),
               widget.TextBox(
                        text = '',
@@ -506,14 +472,14 @@ def init_widgets_list():
                        foreground = colors[2],
                        background = colors[5],
                        padding = 0,
-                       fontsize = 16
+                       fontsize = 18
                        ),
               widget.Memory(
                        foreground = colors[2],
                        background = colors[5],
                        mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + ' -e htop')},
                        padding = 5,
-                       fontsize = 16                       
+                       fontsize = 18                       
                        ),
               widget.TextBox(
                        text='',
@@ -528,7 +494,7 @@ def init_widgets_list():
                        foreground = colors[2],
                        background = colors[4],
                        padding = 5,
-                       fontsize = 16                       
+                       fontsize = 18                       
                        ),
               widget.TextBox(
                        text = '',
@@ -542,13 +508,13 @@ def init_widgets_list():
                        foreground = colors[2],
                        background = colors[5],
                        padding = 0,
-                       fontsize = 16                       
+                       fontsize = 18                       
                        ),
               widget.Volume(
                        foreground = colors[2],
                        background = colors[5],
                        padding = 5,
-                       fontsize = 16                       
+                       fontsize = 18                       
                        ),
               widget.TextBox(
                        text = '',
@@ -568,7 +534,7 @@ def init_widgets_list():
                        foreground = colors[2],
                        background = colors[4],
                        padding = 5,
-                       fontsize = 16                       
+                       fontsize = 18                       
                        ),
               widget.TextBox(
                        text = '',
@@ -581,7 +547,7 @@ def init_widgets_list():
                        foreground = colors[2],
                        background = colors[5],
                        format = "%A, %B %d  [ %H:%M ]",
-                       fontsize = 16
+                       fontsize = 18
                        ),
               widget.Sep(
                        linewidth = 0,
@@ -626,7 +592,7 @@ widgets_screen2 = init_widgets_screen2()
 
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26)),
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=30)),
             Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26))]
 screens = init_screens()
 
