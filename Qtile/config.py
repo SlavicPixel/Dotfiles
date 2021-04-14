@@ -70,15 +70,16 @@ keys = [
 
     Key(["mod1", "control"], "e", lazy.spawn('arcolinux-tweak-tool')),
     Key(["mod1", "control"], "f", lazy.spawn('firefox')),
-    Key(["mod1", "control"], "g", lazy.spawn('chromium -no-default-browser-check')),
+    Key(["mod1", "control"], "g", lazy.spawn('code')),
     Key(["mod1", "control"], "i", lazy.spawn('nitrogen')),
     Key(["mod1", "control"], "k", lazy.spawn('arcolinux-logout')),
     Key(["mod1", "control"], "l", lazy.spawn('arcolinux-logout')),
     Key(["mod1", "control"], "t", lazy.spawn('termite')),
     Key(["mod1", "control"], "u", lazy.spawn('pavucontrol')),
-    Key(["mod1", "control"], "v", lazy.spawn('vivaldi-stable')),
+    Key(["mod1", "control"], "v", lazy.spawn('virt-manager')),
     Key(["mod1", "control"], "w", lazy.spawn('arcolinux-welcome-app')),
     Key(["mod1", "control"], "Return", lazy.spawn('termite')),
+    Key(["mod1", "control"], "n", lazy.spawn('brave')),
 
 # ALT + ... KEYS
 
@@ -206,15 +207,15 @@ keys = [
 # TOGGLE FLOATING LAYOUT
     Key([mod, "shift"], "space", lazy.window.toggle_floating()),]
 
-group_names = [("WWW", {'layout': 'monadtall'}),
-               ("DEV", {'layout': 'monadtall'}),
-               ("SYS", {'layout': 'monadtall'}),
-               ("DOC", {'layout': 'monadtall'}),
-               ("VBOX", {'layout': 'monadtall'}),
-               ("CHAT", {'layout': 'monadtall'}),
-               ("MUS", {'layout': 'monadtall'}),
-               ("VID", {'layout': 'monadtall'}),
-               ("GFX", {'layout': 'floating'})]
+group_names = [("1  ", {'layout': 'monadtall'}),
+               ("2 ", {'layout': 'monadtall'}),
+               ("3 ", {'layout': 'monadtall'}),
+               ("4 ", {'layout': 'monadtall'}),
+               ("5 ", {'layout': 'monadtall'}),
+               ("6 ", {'layout': 'monadtall'}),
+               ("7 ", {'layout': 'monadtall'}),
+               ("8 λ", {'layout': 'monadtall'}),
+               ("9 ", {'layout': 'floating'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -225,7 +226,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 layout_theme = {"border_width": 2,
                 "margin": 8,
                 "border_focus": "e1acff",
-                "border_normal": "1D2330"
+                "border_normal": "1D2330",
                 }
 
 layouts = [
@@ -335,14 +336,11 @@ def init_widgets_list():
                        foreground = colors[4],
                        padding = -1,
                        fontsize = 50
-                       ),
-             widget.Net(
-                       interface = "wlp7s0",
-                       format = '{down} ↓↑ {up}',
+                       ),                     
+              widget.CPU(
                        foreground = colors[2],
-                       background = colors[4],
-                       padding = 5
-                       ),
+                       background = colors[4]
+              ),
               widget.TextBox(
                        text = '',
                        background = colors[4],
@@ -361,7 +359,8 @@ def init_widgets_list():
                        foreground = colors[2],
                        background = colors[5],
                        threshold = 90,
-                       padding = 5
+                       padding = 5,
+                       tag_sensor = "Package id 0"
                        ),
               widget.TextBox(
                        text='',
@@ -412,14 +411,9 @@ def init_widgets_list():
                        padding = -1,
                        fontsize = 50
                        ),
-              widget.TextBox(
-                       text = " ₿",
-                       padding = 0,
-                       foreground = colors[2],
-                       background = colors[4],
-                       fontsize = 16
-                       ),
-              widget.BitcoinTicker(
+             widget.Net(
+                       interface = "wlan0",
+                       format = '{down} ↓↑ {up}',
                        foreground = colors[2],
                        background = colors[4],
                        padding = 5
