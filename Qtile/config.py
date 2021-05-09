@@ -27,7 +27,7 @@ mod1 = "alt"
 mod2 = "control"
 home = os.path.expanduser('~')
 terminal = guess_terminal()
-myTerm="termite"
+myTerm="alacritty"
 
 @lazy.function
 def window_to_prev_group(qtile):
@@ -53,8 +53,7 @@ keys = [
     Key([mod], "q", lazy.window.kill()),
     Key([mod], "x", lazy.spawn('arcolinux-logout')),
     Key([mod], "Escape", lazy.spawn('xkill')),
-    Key([mod], "Return", lazy.spawn('termite')),
-    Key([mod], "KP_Enter", lazy.spawn('termite')),
+    Key([mod], "Return", lazy.spawn(myTerm)),
 
 
 # SUPER + SHIFT KEYS
@@ -72,23 +71,9 @@ keys = [
     Key(["mod1", "control"], "f", lazy.spawn('firefox')),
     Key(["mod1", "control"], "g", lazy.spawn('code')),
     Key(["mod1", "control"], "i", lazy.spawn('nitrogen')),
-    Key(["mod1", "control"], "k", lazy.spawn('arcolinux-logout')),
-    Key(["mod1", "control"], "l", lazy.spawn('arcolinux-logout')),
-    Key(["mod1", "control"], "t", lazy.spawn('termite')),
     Key(["mod1", "control"], "u", lazy.spawn('pavucontrol')),
     Key(["mod1", "control"], "v", lazy.spawn('virt-manager')),
-    Key(["mod1", "control"], "w", lazy.spawn('arcolinux-welcome-app')),
-    Key(["mod1", "control"], "Return", lazy.spawn('termite')),
     Key(["mod1", "control"], "n", lazy.spawn('brave')),
-
-# ALT + ... KEYS
-
-# VARIETY KEYS WITH PYWAL
-
-    Key(["mod1", "shift"], "f", lazy.spawn(home + '/.config/qtile/scripts/set-pywal.sh -f')),
-    Key(["mod1", "shift"], "p", lazy.spawn(home + '/.config/qtile/scripts/set-pywal.sh -p')),
-    Key(["mod1", "shift"], "n", lazy.spawn(home + '/.config/qtile/scripts/set-pywal.sh -n')),
-    Key(["mod1", "shift"], "u", lazy.spawn(home + '/.config/qtile/scripts/set-pywal.sh -u')),
 
 # CONTROL + SHIFT KEYS
 
@@ -102,24 +87,10 @@ keys = [
 
 # MULTIMEDIA KEYS
 
-# INCREASE/DECREASE BRIGHTNESS
-    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5")),
-
 # INCREASE/DECREASE/MUTE VOLUME
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 5%-")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q set Master 5%+")),
-
-    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
-    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
-    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
-    Key([], "XF86AudioStop", lazy.spawn("playerctl stop")),
-
-#    Key([], "XF86AudioPlay", lazy.spawn("mpc toggle")),
-#    Key([], "XF86AudioNext", lazy.spawn("mpc next")),
-#    Key([], "XF86AudioPrev", lazy.spawn("mpc prev")),
-#    Key([], "XF86AudioStop", lazy.spawn("mpc stop")),
 
 # QTILE LAYOUT KEYS
     Key([mod], "n", lazy.layout.normalize()),
@@ -465,7 +436,7 @@ def init_widgets_list():
               widget.Clock(
                        foreground = colors[2],
                        background = colors[5],
-                       format = "%A, %B %d - %H:%M "
+                       format = "%A, %B %d - %H:%M:%S"
                        ),
               widget.Sep(
                        linewidth = 0,
@@ -553,6 +524,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wname': 'pinentry'},
     {'wmclass': 'ssh-askpass'},
     {'wname': 'Qalculate!'},
+    {'wmclass': 'mullvad vpn'},
 
 ],  fullscreen_border_width = 0, border_width = 0)
 auto_fullscreen = True
