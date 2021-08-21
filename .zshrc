@@ -136,6 +136,7 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 
 # pacman
 alias pacsyu='sudo pacman -Syu'
+alias pacsyyu='sudo pacman -Syyu'
 alias pacs='sudo pacman -S'
 alias pacr='sudo pacman -R'
 alias paconfig='sudo vim /etc/pacman.conf'
@@ -150,6 +151,13 @@ alias fail="faillock --user usernameGoesHere --reset"
 # git config
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias yays='yay -S'
+
+# restart mullvad service
+alias mull='sudo systemctl restart mullvad-daemon.service'
+
+# fan speed control
+alias fsl='sudo fsload'
+alias fsi='sudo fsidle'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -54,6 +54,7 @@ keys = [
     Key([mod], "x", lazy.spawn('arcolinux-logout')),
     Key([mod], "Escape", lazy.spawn('xkill')),
     Key([mod], "Return", lazy.spawn(myTerm)),
+    #Key([], "XF86Calculator". lazy.spawn("qalculate-gtk"))
 
 
 # SUPER + SHIFT KEYS
@@ -69,11 +70,11 @@ keys = [
 
     Key(["mod1", "control"], "e", lazy.spawn('arcolinux-tweak-tool')),
     Key(["mod1", "control"], "f", lazy.spawn('firefox')),
-    Key(["mod1", "control"], "g", lazy.spawn('code')),
+    Key(["mod1", "control"], "c", lazy.spawn('code')),
     Key(["mod1", "control"], "i", lazy.spawn('nitrogen')),
     Key(["mod1", "control"], "u", lazy.spawn('pavucontrol')),
     Key(["mod1", "control"], "v", lazy.spawn('virt-manager')),
-    Key(["mod1", "control"], "n", lazy.spawn('brave')),
+    Key(["mod1", "control"], "b", lazy.spawn('brave')),
 
 # CONTROL + SHIFT KEYS
 
@@ -86,7 +87,7 @@ keys = [
     Key([mod2, "shift"], "Print", lazy.spawn('gnome-screenshot -i')),
 
 # MULTIMEDIA KEYS
-
+    Key([], "XF86Calculator", lazy.spawn("qalculate-gtk")),
 # INCREASE/DECREASE/MUTE VOLUME
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 5%-")),
@@ -241,7 +242,7 @@ colors = [["#282c34", "#282c34"], # panel background
 ##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
     font="Ubuntu Mono",
-    fontsize = 18,
+    fontsize = 21,
     padding = 2,
     background=colors[2]
 )
@@ -256,8 +257,32 @@ def init_widgets_list():
                        foreground = colors[2],
                        background = colors[0]
                        ),
+              widget.Image(
+                       filename = "~/.config/qtile/icons/tux.png",
+                       scale = "False",
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
+                       background = colors[0]
+                       ),
+             widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),
+              widget.TextBox(
+                       text = '|',
+                       background = colors[0],
+                       foreground = '#808080',
+                       fontsize = 20
+                       ),
+             widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),
               widget.GroupBox(
-                       font = "Ubuntu Bold",
+                       font = "Ubuntu",
                        fontsize = 14,
                        margin_y = 3,
                        margin_x = 0,
@@ -383,7 +408,7 @@ def init_widgets_list():
                        fontsize = 50
                        ),
              widget.Net(
-                       interface = "wlan0",
+                       interface = "enp0s31f6", # "wlan0"
                        format = '{down} ↓↑ {up}',
                        foreground = colors[2],
                        background = colors[4],
@@ -481,7 +506,7 @@ widgets_screen2 = init_widgets_screen2()
 
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=30)),
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=33)),
             Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26))]
 screens = init_screens()
 
@@ -525,6 +550,9 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'ssh-askpass'},
     {'wname': 'Qalculate!'},
     {'wmclass': 'mullvad vpn'},
+    {'wname': 'Connman System Tray'},
+    {'wname': 'Steam'},
+    {'wname': 'Steam Login'},
 
 ],  fullscreen_border_width = 0, border_width = 0)
 auto_fullscreen = True
