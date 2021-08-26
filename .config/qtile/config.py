@@ -21,6 +21,7 @@ from libqtile.lazy import lazy
 from typing import List  # noqa: F401
 from libqtile.widget import Spacer
 from libqtile.utils import guess_terminal
+import nic
 
 mod = "mod4"
 mod1 = "alt"
@@ -28,6 +29,7 @@ mod2 = "control"
 home = os.path.expanduser('~')
 terminal = guess_terminal()
 myTerm="alacritty"
+interface_name = nic.get_nic_name()
 
 @lazy.function
 def window_to_prev_group(qtile):
@@ -53,9 +55,7 @@ keys = [
     Key([mod], "q", lazy.window.kill()),
     Key([mod], "x", lazy.spawn('arcolinux-logout')),
     Key([mod], "Escape", lazy.spawn('xkill')),
-    Key([mod], "Return", lazy.spawn(myTerm)),
-    #Key([], "XF86Calculator". lazy.spawn("qalculate-gtk"))
-
+    Key([mod], "Return", lazy.spawn(myTerm)), 
 
 # SUPER + SHIFT KEYS
 
@@ -72,9 +72,10 @@ keys = [
     Key(["mod1", "control"], "f", lazy.spawn('firefox')),
     Key(["mod1", "control"], "c", lazy.spawn('code')),
     Key(["mod1", "control"], "i", lazy.spawn('nitrogen')),
-    Key(["mod1", "control"], "u", lazy.spawn('pavucontrol')),
+    Key(["mod1", "control"], "p", lazy.spawn('pavucontrol')),
     Key(["mod1", "control"], "v", lazy.spawn('virt-manager')),
     Key(["mod1", "control"], "b", lazy.spawn('brave')),
+    Key(["mod1", "control"], "q", lazy.spawn(myTerm + ' -e nvim /home/pixel/.config/qtile/config.py')),
 
 # CONTROL + SHIFT KEYS
 
@@ -408,7 +409,7 @@ def init_widgets_list():
                        fontsize = 50
                        ),
              widget.Net(
-                       interface = "enp0s31f6", # "wlan0"
+                       interface = interface_name, # "wlan0"
                        format = '{down} ↓↑ {up}',
                        foreground = colors[2],
                        background = colors[4],
@@ -478,7 +479,7 @@ def init_widgets_list():
                        ),                         
                widget.Systray(
                         background=colors[4],
-                        icon_size=20,
+                        icon_size=21,
                         padding = 4
                         ),
               widget.Sep(
@@ -499,6 +500,7 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
+    del widgets_screen2[32:35]
     return widgets_screen2
 
 widgets_screen1 = init_widgets_screen1()

@@ -115,11 +115,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # zsh edit or update
-alias zshedit='micro ~/.zshrc'
+alias zshedit='nvim ~/.zshrc'
 alias zshup='source ~/.zshrc'
+alias zshgit='cp ~/.zshrc ~/Dotfiles/.zshrc'
 
-# edit qtile
-alias qtiledit='micro ~/.config/qtile/config.py'
+# qtile
+alias qtiledit='nvim ~/.config/qtile/config.py'
+alias qtilegit='cp ~/.config/qtile/config.py ~/Dotfiles/.config/qtile/config.py'
 
 # navigation
 alias ..='cd ..'
@@ -127,6 +129,7 @@ alias ...='cd ../..'
 
 # list files
 alias ls="lsd"
+alias lss="lsd -la"
 
 # vim
 alias vim="nvim"
