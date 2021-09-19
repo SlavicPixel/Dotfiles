@@ -22,6 +22,7 @@ from typing import List  # noqa: F401
 from libqtile.widget import Spacer
 from libqtile.utils import guess_terminal
 import nic
+import datetime
 
 mod = "mod4"
 mod1 = "alt"
@@ -30,6 +31,7 @@ home = os.path.expanduser('~')
 terminal = guess_terminal()
 myTerm="alacritty"
 interface_name = nic.get_nic_name()
+current_year = datetime.datetime.now().year
 
 @lazy.function
 def window_to_prev_group(qtile):
@@ -75,6 +77,7 @@ keys = [
     Key(["mod1", "control"], "p", lazy.spawn('pavucontrol')),
     Key(["mod1", "control"], "v", lazy.spawn('virt-manager')),
     Key(["mod1", "control"], "b", lazy.spawn('brave')),
+    Key(["mod1", "control"], "s", lazy.spawn('steam')),
     Key(["mod1", "control"], "q", lazy.spawn(myTerm + ' -e nvim /home/pixel/.config/qtile/config.py')),
 
 # CONTROL + SHIFT KEYS
@@ -83,8 +86,9 @@ keys = [
 
 # SCREENSHOTS
 
-    Key([], "Print", lazy.spawn("scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
-    Key([mod2], "Print", lazy.spawn('xfce4-screenshooter')),
+    #Key([], "Print", lazy.spawn("scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
+    Key([], "Print", lazy.spawn('xfce4-screenshooter')),
+    Key([mod], "Print", lazy.spawn('thunar /home/pixel/Pictures/Screenshots')),
     Key([mod2, "shift"], "Print", lazy.spawn('gnome-screenshot -i')),
 
 # MULTIMEDIA KEYS
@@ -330,9 +334,31 @@ def init_widgets_list():
               widget.TextBox(
                        text = '',
                        background = colors[0],
+                       foreground = colors[5],
+                       padding = -1,
+                       fontsize = 70
+                       ),
+              widget.TextBox(
+                       text = " ⟳",
+                       padding = 2,
+                       foreground = colors[2],
+                       background = colors[5],
+                       fontsize = 16
+                       ),
+              widget.CheckUpdates(
+                       update_interval = 1800,
+                       distro = "Arch_checkupdates",
+                       display_format = "{updates} Updates",
+                       foreground = colors[2],
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
+                       background = colors[5]
+                       ),
+              widget.TextBox(
+                       text = '',
+                       background = colors[5],
                        foreground = colors[4],
                        padding = -1,
-                       fontsize = 50
+                       fontsize = 70
                        ),                     
               widget.CPU(
                        foreground = colors[2],
@@ -343,7 +369,7 @@ def init_widgets_list():
                        background = colors[4],
                        foreground = colors[5],
                        padding = -1,
-                       fontsize = 50
+                       fontsize = 70
                        ),
               widget.TextBox(
                        text = " 🌡",
@@ -364,29 +390,20 @@ def init_widgets_list():
                        background = colors[5],
                        foreground = colors[4],
                        padding = -1,
-                       fontsize = 50
+                       fontsize = 70
                        ),
-              widget.TextBox(
-                       text = " ⟳",
-                       padding = 2,
-                       foreground = colors[2],
-                       background = colors[4],
-                       fontsize = 16
-                       ),
-              widget.CheckUpdates(
-                       update_interval = 1800,
-                       distro = "Arch_checkupdates",
-                       display_format = "{updates} Updates",
-                       foreground = colors[2],
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
-                       background = colors[4]
-                       ),
+
+               widget.NvidiaSensors(
+                      foreground = colors[2],
+                      background = colors[4],
+                      format = 'GPU {temp}°C'
+                      ),             
               widget.TextBox(
                        text = '',
                        background = colors[4],
                        foreground = colors[5],
                        padding = -1,
-                       fontsize = 50
+                       fontsize = 70
                        ),
               widget.TextBox(
                        text = " 🖬",
@@ -406,10 +423,10 @@ def init_widgets_list():
                        background = colors[5],
                        foreground = colors[4],
                        padding = -1,
-                       fontsize = 50
+                       fontsize = 70
                        ),
              widget.Net(
-                       interface = interface_name, # "wlan0"
+                       interface = "wlan0",# interface_name 
                        format = '{down} ↓↑ {up}',
                        foreground = colors[2],
                        background = colors[4],
@@ -420,7 +437,7 @@ def init_widgets_list():
                        background = colors[4],
                        foreground = colors[5],
                        padding = -1,
-                       fontsize = 50
+                       fontsize = 70
                        ),
               widget.TextBox(
                       text = " Vol:",
@@ -438,7 +455,7 @@ def init_widgets_list():
                        background = colors[5],
                        foreground = colors[4],
                        padding = -1,
-                       fontsize = 50
+                       fontsize = 70
                        ),
               widget.CurrentLayoutIcon(
                        custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
@@ -457,12 +474,13 @@ def init_widgets_list():
                        background = colors[4],
                        foreground = colors[5],
                        padding = -1,
-                       fontsize = 50
+                       fontsize = 70
                        ),
               widget.Clock(
                        foreground = colors[2],
                        background = colors[5],
-                       format = "%A, %B %d - %H:%M:%S"
+                       format = "%A, %B %d - %H:%M:%S",
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + f" --hold -e cal {current_year}")}
                        ),
               widget.Sep(
                        linewidth = 0,
@@ -475,7 +493,7 @@ def init_widgets_list():
                        background = colors[5],
                        foreground = colors[4],
                        padding = -1,
-                       fontsize = 50
+                       fontsize = 70
                        ),                         
                widget.Systray(
                         background=colors[4],
@@ -500,7 +518,7 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    del widgets_screen2[32:35]
+    del widgets_screen2[34:37]
     return widgets_screen2
 
 widgets_screen1 = init_widgets_screen1()
@@ -528,33 +546,34 @@ follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
-    {'wmclass': 'Arcolinux-welcome-app.py'},
-    {'wmclass': 'Arcolinux-tweak-tool.py'},
-    {'wmclass': 'confirm'},
-    {'wmclass': 'dialog'},
-    {'wmclass': 'download'},
-    {'wmclass': 'error'},
-    {'wmclass': 'file_progress'},
-    {'wmclass': 'notification'},
-    {'wmclass': 'splash'},
-    {'wmclass': 'toolbar'},
-    {'wmclass': 'confirmreset'},
-    {'wmclass': 'makebranch'},
-    {'wmclass': 'maketag'},
-    {'wmclass': 'Arandr'},
-    {'wmclass': 'feh'},
-    {'wmclass': 'Galculator'},
-    {'wmclass': 'arcolinux-logout'},
-    {'wmclass': 'xfce4-terminal'},
-    {'wname': 'branchdialog'},
-    {'wname': 'Open File'},
-    {'wname': 'pinentry'},
-    {'wmclass': 'ssh-askpass'},
-    {'wname': 'Qalculate!'},
-    {'wmclass': 'mullvad vpn'},
-    {'wname': 'Connman System Tray'},
-    {'wname': 'Steam'},
-    {'wname': 'Steam Login'},
+  *layout.Floating.default_float_rules,
+  Match(wm_class='Arcolinux-welcome-app.py'),
+  Match(wm_class='Arcolinux-tweak-tool.py'),
+  Match(wm_class='confirm'),
+  Match(wm_class='dialog'),
+  Match(wm_class='download'),
+  Match(wm_class='error'),
+  Match(wm_class='file_progress'),
+  Match(wm_class='notification'),
+  Match(wm_class='splash'),
+  Match(wm_class='toolbar'),
+  Match(wm_class='confirmreset'),
+  Match(wm_class='makebranch'),
+  Match(wm_class='maketag'),
+  Match(wm_class='Arandr'),
+  Match(wm_class='feh'),
+  Match(wm_class='Galculator'),
+  Match(wm_class='arcolinux-logout'),
+  Match(wm_class='xfce4-terminal'),
+  Match(wm_class='ssh-askpass'),
+  Match(wm_class='mullvad vpn'),
+  Match(title='branchdialog'),
+  Match(title='Open File'),
+  Match(title='pinentry'),
+  Match(title='Qalculate!'),
+  Match(title='Connman System Tray'),
+  Match(title='Steam'),
+  Match(title='Steam Login'),
 
 ],  fullscreen_border_width = 0, border_width = 0)
 auto_fullscreen = True
