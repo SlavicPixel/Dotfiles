@@ -78,6 +78,7 @@ keys = [
     Key(["mod1", "control"], "v", lazy.spawn('virt-manager')),
     Key(["mod1", "control"], "b", lazy.spawn('brave')),
     Key(["mod1", "control"], "s", lazy.spawn('steam')),
+    Key(["mod1", "control"], "t", lazy.spawn('thunderbird')),
     Key(["mod1", "control"], "q", lazy.spawn(myTerm + ' -e nvim /home/pixel/.config/qtile/config.py')),
 
 # CONTROL + SHIFT KEYS
