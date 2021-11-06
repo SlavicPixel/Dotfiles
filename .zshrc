@@ -131,8 +131,9 @@ alias ...='cd ../..'
 alias ls="lsd"
 alias lss="lsd -la"
 
-# vim
+# vim & emacs
 alias vim="nvim"
+alias emacs="emacsclient -c -a 'emacs'"
 
 # the terminal rickroll
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
@@ -161,6 +162,12 @@ alias mull='sudo systemctl restart mullvad-daemon.service'
 # fan speed control
 alias fsl='sudo fsload'
 alias fsi='sudo fsidle'
+
+alias top='bpytop'
+
+# picom
+alias pik='killall picom'
+alias pis='picom -b --config $HOME/.config/qtile/scripts/picom.conf'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

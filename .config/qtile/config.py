@@ -62,7 +62,8 @@ keys = [
 # SUPER + SHIFT KEYS
 
     Key([mod, "shift"], "Return", lazy.spawn('thunar')),
-    Key([mod, "shift"], "d", lazy.spawn("dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'")),
+    #Key([mod, "shift"], "d", lazy.spawn("dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'")),
+    Key([mod, "shift"], "d", lazy.spawn("dmenu_run -i -h 33 -fn 'UbuntuMono:bold:pixelsize=22'")),
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod, "control"], "r", lazy.restart()),
@@ -247,7 +248,7 @@ colors = [["#282c34", "#282c34"], # panel background
 
 ##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
-    font="Ubuntu Mono",
+    font="FiraCode Nerd Font",
     fontsize = 21,
     padding = 2,
     background=colors[2]
@@ -288,17 +289,17 @@ def init_widgets_list():
                        background = colors[0]
                        ),
               widget.GroupBox(
-                       font = "Ubuntu",
-                       fontsize = 14,
+                       font = "FiraCode Nerd Font",
+                       fontsize = 18,
                        margin_y = 3,
                        margin_x = 0,
                        padding_y = 5,
                        padding_x = 3,
                        borderwidth = 3,
-                       active = colors[2],
+                       active = "#ff71ce",
                        inactive = colors[2],
                        rounded = False,
-                       highlight_color = colors[1],
+                       highlight_color = colors[0],
                        highlight_method = "line",
                        this_current_screen_border = colors[6],
                        this_screen_border = colors [4],
@@ -339,17 +340,10 @@ def init_widgets_list():
                        padding = -1,
                        fontsize = 70
                        ),
-              widget.TextBox(
-                       text = " ⟳",
-                       padding = 2,
-                       foreground = colors[2],
-                       background = colors[5],
-                       fontsize = 16
-                       ),
               widget.CheckUpdates(
                        update_interval = 1800,
                        distro = "Arch_checkupdates",
-                       display_format = "{updates} Updates",
+                       display_format = "⟳{updates} Updates",
                        foreground = colors[2],
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
                        background = colors[5]
@@ -362,6 +356,7 @@ def init_widgets_list():
                        fontsize = 70
                        ),                     
               widget.CPU(
+                       format = 'cpu: {load_percent}% {freq_current}GHz',
                        foreground = colors[2],
                        background = colors[4]
               ),
@@ -441,10 +436,10 @@ def init_widgets_list():
                        fontsize = 70
                        ),
               widget.TextBox(
-                      text = " Vol:",
+                      text = "Vol:",
                        foreground = colors[2],
                        background = colors[5],
-                       padding = 0
+                       padding = 0,
                        ),
               widget.Volume(
                        foreground = colors[2],
