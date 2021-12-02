@@ -167,7 +167,7 @@ alias top='bpytop'
 
 # picom
 alias pik='killall picom'
-alias pis='picom -b --config $HOME/.config/qtile/scripts/picom.conf'
+alias pis='picom -b --experimental-backends'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
