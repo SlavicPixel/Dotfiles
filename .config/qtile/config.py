@@ -67,7 +67,6 @@ keys = [
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod, "control"], "r", lazy.restart()),
-    # Key([mod, "shift"], "x", lazy.shutdown()),
 
 # CONTROL + ALT KEYS
 
@@ -186,6 +185,14 @@ keys = [
 
 # TOGGLE FLOATING LAYOUT
     Key([mod, "shift"], "space", lazy.window.toggle_floating()),]
+
+mouse = [
+    Drag([mod], "Button1", lazy.window.set_position_floating(),
+        start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(),
+        start=lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front())
+]
 
 group_names = [("1  ", {'layout': 'monadtall'}),
                ("2 ", {'layout': 'monadtall'}),
@@ -347,7 +354,7 @@ def init_widgets_list():
                        update_interval = 1800,
                        distro = "Arch_checkupdates",
                        display_format = "⟳{updates} Updates",
-                       foreground = colors[6],
+                       foreground = colors[2],
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
                        background = colors[0]
                        ),
@@ -511,7 +518,8 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    del widgets_screen2[34:37]
+    del widgets_screen2[10:12]
+    del widgets_screen2[31:33]
     return widgets_screen2
 
 widgets_screen1 = init_widgets_screen1()
