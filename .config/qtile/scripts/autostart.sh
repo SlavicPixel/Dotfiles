@@ -22,4 +22,5 @@ nitrogen --restore &
 mullvad-vpn &
 cmst &
 /usr/bin/emacs --daemon &
-
+gwe &
+nvidia_pl

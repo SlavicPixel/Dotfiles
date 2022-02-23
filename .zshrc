@@ -133,6 +133,7 @@ alias lss="lsd -la"
 
 # vim & emacs
 alias vim="nvim"
+alias svim="sudo nvim"
 alias emacs="emacsclient -c -a 'emacs'"
 
 # the terminal rickroll
@@ -163,11 +164,15 @@ alias mull='sudo systemctl restart mullvad-daemon.service'
 alias fsl='sudo fsload'
 alias fsi='sudo fsidle'
 
-alias top='bpytop'
+# bpytop
+alias btop='bpytop'
 
 # picom
 alias pik='killall picom'
 alias pis='picom -b --experimental-backends'
+
+# turn off external drive
+alias driveoff='udisksctl power-off -b'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

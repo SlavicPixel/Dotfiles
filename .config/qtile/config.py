@@ -30,7 +30,7 @@ mod2 = "control"
 home = os.path.expanduser('~')
 terminal = guess_terminal()
 myTerm="alacritty"
-interface_name = get_nic_name() # set get_nic_name(wired) if using a wired connection
+interface_name = get_nic_name() # set get_nic_name('wired') if using a wired connection
 current_year = datetime.now().year
 
 @lazy.function
@@ -440,10 +440,10 @@ def init_widgets_list():
                        fontsize = 20
                        ),
                widget.TextBox(
-                       text=" ",
+                       text="",
                        foreground='#ff71ce',
                        background=colors[0],
-                       font="Font Awesome 5 Free Solid",
+                       font="Font Awesome 6 Free Solid",
                        # fontsize=38,
                        ),
               widget.Volume(
@@ -476,11 +476,12 @@ def init_widgets_list():
                        foreground = colors[7],
                        fontsize = 20
                        ),
-               widget.TextBox(
-                       text=" ",
+              widget.TextBox(
+                       text="",
+                       # text="\uF551",
                        foreground='#46d9ff',
                        background=colors[0],
-                       font="Font Awesome 5 Free Solid",
+                       font="Font Awesome 6 Free Solid",
                        # fontsize=38,
                        ),
               widget.Clock(
