@@ -55,7 +55,7 @@ keys = [
 
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "q", lazy.window.kill()),
-    Key([mod], "x", lazy.spawn('arcolinux-logout')),
+    Key([mod], "x", lazy.spawn('archlinux-logout')),
     Key([mod], "Escape", lazy.spawn('xkill')),
     Key([mod], "Return", lazy.spawn(myTerm)), 
 
@@ -195,7 +195,7 @@ mouse = [
 ]
 
 group_names = [("1  ", {'layout': 'monadtall'}),
-               ("2 ", {'layout': 'monadtall'}),
+               ("2 ", {'layout': 'monadtall', 'matches':[Match(wm_class='qbittorrent')]}),
                ("3 ", {'layout': 'monadtall'}),
                ("4 ", {'layout': 'monadtall'}),
                ("5 ", {'layout': 'monadtall'}),
@@ -248,7 +248,7 @@ layouts = [
     layout.Floating(**layout_theme)
 ]
 
-colors = [["#282c34", "#282c34"], # panel background
+colors = [["#282a36", "#282a36"], # panel background
           ["#3d3f4b", "#434758"], # background for current screen tab
           ["#ffffff", "#ffffff"], # font color for group names
           ["#ff5555", "#ff5555"], # border line color for current tab

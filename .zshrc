@@ -21,7 +21,7 @@ ZSH=/usr/share/oh-my-zsh/
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_THEME="fox"
-
+path+="$HOME/.emacs.d/bin"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -80,6 +80,7 @@ ZSH_THEME="fox"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
 plugins=(
 	git
 	zsh-autosuggestions
@@ -134,7 +135,12 @@ alias lss="lsd -la"
 # vim & emacs
 alias vim="nvim"
 alias svim="sudo nvim"
+alias em="/usr/bin/emacs -nw"
 alias emacs="emacsclient -c -a 'emacs'"
+alias doomsync="~/.emacs.d/bin/doom sync"
+alias doomdoctor="~/.emacs.d/bin/doom doctor"
+alias doomupgrade="~/.emacs.d/bin/doom upgrade"
+alias doompurge="~/.emacs.d/bin/doom purge"
 
 # the terminal rickroll
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
@@ -174,11 +180,15 @@ alias pis='picom -b --experimental-backends'
 # turn off external drive
 alias driveoff='udisksctl power-off -b'
 
+# yt-dlp
+alias ytd='yt-dlp'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-pfetch
-/home/pixel/GitClones/shell-color-scripts/colorscript.sh random
+# pfetch
+neofetch
+colorscript random
 
 #source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 #POWERLEVEL9K_DEBUG_ISSUE_315=true

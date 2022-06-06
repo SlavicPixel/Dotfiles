@@ -17,6 +17,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/AutoComplPop'
 Plugin 'nvim-lua/completion-nvim'
 Plugin 'Raimondi/delimitMate'
+Plugin 'nvim-treesitter/nvim-treesitter'
 " ===================
 " end of plugins
 " ===================
