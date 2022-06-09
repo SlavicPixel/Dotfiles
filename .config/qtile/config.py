@@ -47,17 +47,13 @@ def window_to_next_group(qtile):
 
 keys = [
 
-# FUNCTION KEYS
-
-    Key([], "F12", lazy.spawn('xfce4-terminal --drop-down')),
-
 # SUPER + FUNCTION KEYS
 
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "q", lazy.window.kill()),
     Key([mod], "x", lazy.spawn('archlinux-logout')),
     Key([mod], "Escape", lazy.spawn('xkill')),
-    Key([mod], "Return", lazy.spawn(myTerm)), 
+    Key([mod], "Return", lazy.spawn(myTerm)),
 
 # SUPER + SHIFT KEYS
 
@@ -73,28 +69,23 @@ keys = [
     # Key(["mod1", "control"], "e", lazy.spawn('arcolinux-tweak-tool')),
     Key(["mod1", "control"], "e", lazy.spawn("emacsclient -c -a 'emacs'")),
     Key(["mod1", "control"], "f", lazy.spawn('firefox')),
-    Key(["mod1", "control"], "c", lazy.spawn('code')),
-    Key(["mod1", "control"], "i", lazy.spawn('nitrogen')),
+    Key(["mod1", "control"], "c", lazy.spawn('vscodium')),
     Key(["mod1", "control"], "p", lazy.spawn('pavucontrol')),
     Key(["mod1", "control"], "v", lazy.spawn('virt-manager')),
     Key(["mod1", "control"], "b", lazy.spawn('brave')),
     Key(["mod1", "control"], "s", lazy.spawn('steam')),
     Key(["mod1", "control"], "t", lazy.spawn('thunderbird')),
-    Key(["mod1", "control"], "q", lazy.spawn(myTerm + ' -e nvim /home/pixel/.config/qtile/config.py')),
-
-# CONTROL + SHIFT KEYS
-
-    Key([mod2, "shift"], "Escape", lazy.spawn('xfce4-taskmanager')),
+    Key(["mod1", "control"], "q", lazy.spawn('qbittorrent')), # SEED YOUR LINUX ISOs
 
 # SCREENSHOTS
 
     #Key([], "Print", lazy.spawn("scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
     Key([], "Print", lazy.spawn('xfce4-screenshooter')),
     Key([mod], "Print", lazy.spawn('thunar /home/pixel/Pictures/Screenshots')),
-    Key([mod2, "shift"], "Print", lazy.spawn('gnome-screenshot -i')),
 
 # MULTIMEDIA KEYS
     Key([], "XF86Calculator", lazy.spawn("qalculate-gtk")),
+
 # INCREASE/DECREASE/MUTE VOLUME
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 5%-")),
@@ -229,22 +220,22 @@ layouts = [
     #layout.Zoomy(**layout_theme),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
-    layout.Tile(shift_windows=True, **layout_theme),
-    layout.Stack(num_stacks=2),
-    layout.TreeTab(
-         font = "Ubuntu",
-         fontsize = 10,
-         sections = ["FIRST", "SECOND"],
-         section_fontsize = 11,
-         bg_color = "141414",
-         active_bg = "90C435",
-         active_fg = "000000",
-         inactive_bg = "384323",
-         inactive_fg = "a0a0a0",
-         padding_y = 5,
-         section_top = 10,
-         panel_width = 320
-         ),
+    # layout.Tile(shift_windows=True, **layout_theme),
+    # layout.Stack(num_stacks=2),
+    # layout.TreeTab(
+    #      font = "Ubuntu",
+    #      fontsize = 10,
+    #      sections = ["FIRST", "SECOND"],
+    #      section_fontsize = 11,
+    #      bg_color = "141414",
+    #      active_bg = "90C435",
+    #      active_fg = "000000",
+    #      inactive_bg = "384323",
+    #      inactive_fg = "a0a0a0",
+    #      padding_y = 5,
+    #      section_top = 10,
+    #      panel_width = 320
+    #      ),
     layout.Floating(**layout_theme)
 ]
 
