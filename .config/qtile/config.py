@@ -104,6 +104,8 @@ keys = [
     Key([mod], "j", lazy.layout.down()),
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
+    # Key([mod, "comma"], lazy.to_screen(0), desc='Next monitor'),
+    # Key([mod, "period"], lazy.to_screen(1), desc='Next monitor'),
 
 
 # RESIZE UP, DOWN, LEFT, RIGHT
@@ -312,7 +314,6 @@ def init_widgets_list():
                        ),
               widget.Prompt(
                        prompt = prompt,
-                       font = "Ubuntu Mono",
                        padding = 10,
                        foreground = colors[3],
                        background = colors[1],

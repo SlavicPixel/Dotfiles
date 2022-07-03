@@ -129,7 +129,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 
 # list files
-alias ls="lsd"
+alias ls="lsd -l"
 alias lss="lsd -la"
 
 # vim & emacs
