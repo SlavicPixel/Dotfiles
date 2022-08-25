@@ -361,19 +361,6 @@ def init_widgets_list():
                        foreground = '#01cdfe',
                        background = colors[0]
               ),
-              widget.TextBox(
-                       text = '|',
-                       background = colors[0],
-                       foreground = colors[7],
-                       fontsize = 20
-                       ),
-              widget.TextBox(
-                       text = " 🌡",
-                       padding = 2,
-                       foreground = '#01cdfe',
-                       background = colors[0],
-                       fontsize = 16
-                       ),
               widget.ThermalSensor(
                        foreground = '#01cdfe',
                        background = colors[0],
@@ -512,7 +499,7 @@ def init_widgets_screen1():
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
     del widgets_screen2[10:12]
-    del widgets_screen2[31:33]
+    del widgets_screen2[29:31]
     return widgets_screen2
 
 widgets_screen1 = init_widgets_screen1()
