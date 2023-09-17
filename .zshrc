@@ -115,6 +115,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# sudo doas
+alias sudo='doas'
+
 # zsh edit or update
 alias zshedit='nvim ~/.zshrc'
 alias zshup='source ~/.zshrc'
@@ -134,7 +137,7 @@ alias lss="lsd -la"
 
 # vim & emacs
 alias vim="nvim"
-alias svim="sudo nvim"
+alias svim="doas nvim"
 alias em="/usr/bin/emacs -nw"
 alias emacs="emacsclient -c -a 'emacs'"
 alias doomsync="~/.emacs.d/bin/doom sync"
@@ -146,15 +149,15 @@ alias doompurge="~/.emacs.d/bin/doom purge"
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 
 # pacman
-alias pacsyu='sudo pacman -Syu'
-alias pacsyyu='sudo pacman -Syyu'
-alias pacs='sudo pacman -S'
-alias pacr='sudo pacman -R'
-alias paconfig='sudo vim /etc/pacman.conf'
+alias pacsyu='doas pacman -Syu'
+alias pacsyyu='doas pacman -Syyu'
+alias pacs='doas pacman -S'
+alias pacr='doas pacman -R'
+alias paconfig='doas vim /etc/pacman.conf'
 
 # shutdown or reboot 
-alias ssn="sudo shutdown now"
-alias sr="sudo reboot"
+alias ssn="doas shutdown now"
+alias sr="doas reboot"
 
 # failock reset
 alias fail="faillock --user usernameGoesHere --reset"
@@ -164,11 +167,11 @@ alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias yays='yay -S'
 
 # restart mullvad service
-alias mull='sudo systemctl restart mullvad-daemon.service'
+alias mull='doas systemctl restart mullvad-daemon.service'
 
 # fan speed control
-alias fsl='sudo fsload'
-alias fsi='sudo fsidle'
+alias fsl='doas fsload'
+alias fsi='doas fsidle'
 
 # bpytop
 alias btop='bpytop'
