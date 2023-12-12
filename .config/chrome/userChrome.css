@@ -63,13 +63,21 @@ toolbox#navigator-toolbox  {
     color: rgba(var(--white), 1) !important;
 }
 
+
+#TabsToolbar #tabbrowser-tabs .tabbrowser-tab[selected] .tab-content {
+  color: rgba(var(--dark-color), 1) !important;
+  background: rgba(var(--purple), 1) !important;
+  border-radius: 50px !important;
+}
+
+/*
 tab[selected="true"] .tab-content {
 	color: rgba(var(--accent-color), 1) !important;
 }
 tab[selected="true"] .tab-background {
 	background: rgba(var(--purple), 1) !important;
 }
-
+*/
 .tabbrowser-tab::after, .tabbrowser-tab::before {
     border-left: 0 !important;
     opacity: 0 !important;
