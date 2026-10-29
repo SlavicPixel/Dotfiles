@@ -1,0 +1,5 @@
+#!/bin/bash
+
+freq="$(grep 'cpu MHz' /proc/cpuinfo | awk '/cpu MHz/ {print $4}' | head -1)"
+load="$(cat <(grep 'cpu ' /proc/stat) <(sleep 0.1 && grep 'cpu ' /proc/stat) | awk -v RS="" '{printf "%.1f", ($13-$2+$15-$4)*100/($13-$2+$15-$4+$16-$5)}')"
+echo "^c#ecbe7b^ ${freq}MHz ${load}% "
