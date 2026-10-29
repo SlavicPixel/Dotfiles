@@ -1,4 +1,4 @@
-#! /bin/bash 
+#!/bin/bash 
 
 mem="$(free -h | awk '/^Mem:/ {print $3 "/" $2}')"
-echo -e "^c#ff6c6b^ $mem "
+echo -e "^c#ff6c6b^ $mem"

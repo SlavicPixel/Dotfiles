@@ -1,5 +1,5 @@
 #!/bin/sh
 
 temp="$(sensors | awk '/Package id 0/ {print $4}')"
-echo "^c#01cdfe^🌡 ${temp} "
+echo "^c#01cdfe^🌡 ${temp}"
 
